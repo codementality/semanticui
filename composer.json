@@ -1,0 +1,240 @@
+{
+    "name": "codementality/semanticui",
+    "description": "Semantic UI, A Drupal 9 project",
+    "type": "project",
+    "license": "GPL-2.0-or-later",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "codementality/semantic",
+                "version": "dev-main",
+                "type": "drupal-custom-theme",
+                "source": {
+                    "url": "https://github.com/codementality/semantic",
+                    "type": "git",
+                    "reference": "main"
+                }
+            }
+        }
+    ],
+    "require": {
+        "bower-asset/dropzone": "^5.9",
+        "codementality/semantic": "dev-main",
+        "composer/installers": "^2.1",
+        "cweagans/composer-patches": "^1.7",
+        "drupal/address": "^1.10",
+        "drupal/admin_toolbar": "^3.1",
+        "drupal/autosave_form": "^1.3",
+        "drupal/bg_image_formatter": "^1.15",
+        "drupal/coi": "^3.0",
+        "drupal/component_blocks": "^1.2",
+        "drupal/components": "^2.4",
+        "drupal/core-composer-scaffold": "^9.4",
+        "drupal/core-recommended": "^9.4",
+        "drupal/diff": "^1.0",
+        "drupal/easy_responsive_images": "^1.1",
+        "drupal/editor_advanced_link": "^2.0",
+        "drupal/entity_block": "^1.0",
+        "drupal/entity_usage": "^2@beta",
+        "drupal/field_group": "^3.1",
+        "drupal/focal_point": "^1.5",
+        "drupal/image_widget_crop": "^2.3",
+        "drupal/inline_block_title_automatic": "^1.0",
+        "drupal/inline_entity_form": "^1@RC",
+        "drupal/layout_builder_browser": "^1.4",
+        "drupal/layout_builder_component_attributes": "^2.0",
+        "drupal/layout_builder_modal": "^1.1",
+        "drupal/layout_builder_operation_link": "^2.0",
+        "drupal/layout_builder_restrictions": "^2.13",
+        "drupal/layout_builder_save_and_edit": "^1.0",
+        "drupal/layout_builder_st": "^1@alpha",
+        "drupal/linkit": "^6@beta",
+        "drupal/media_bulk_upload": "^3.0",
+        "drupal/media_library_edit": "^2.3",
+        "drupal/media_library_form_element": "^2.0",
+        "drupal/media_responsive_thumbnail": "^1.2",
+        "drupal/menu_breadcrumb": "^1.16",
+        "drupal/office_hours": "^1.6",
+        "drupal/paragraphs": "^1.14",
+        "drupal/pathauto": "^1.10",
+        "drupal/rabbit_hole": "^1@beta",
+        "drupal/redirect": "^1.7",
+        "drupal/section_library": "^1.0",
+        "drupal/section_library_reusable": "^1@beta",
+        "drupal/toolbar_anti_flicker": "^9.3",
+        "drupal/twig_temp": "^1.2",
+        "drupal/twig_tweak": "^3.1",
+        "drupal/twig_vardumper": "^3.0",
+        "drupal/ui_patterns": "^1.2",
+        "drupal/ui_patterns_extends": "^1@beta",
+        "drupal/ui_patterns_field_formatters": "^1.7",
+        "drupal/ui_patterns_layout_builder": "^1.1",
+        "drupal/ui_patterns_layouts": "^1.2",
+        "drupal/ui_patterns_settings": "^1.1",
+        "drupal/ui_patterns_views": "^1.2",
+        "drupal/ui_patterns_views_style": "^1.1",
+        "drupal/view_mode_switch": "^2.0",
+        "drush/drush": "^11.0",
+        "oomphinc/composer-installers-extender": "^2.0"
+    },
+    "require-dev": {
+        "chi-teck/drupal-code-generator": "^2.5",
+        "drupal/core-dev": "^9.4",
+        "drupal/devel": "^4.1",
+        "drupal/devel_kint_extras": "^1.0",
+        "mglaman/phpstan-drupal": "^1.1",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "drupal/core-composer-scaffold": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "cweagans/composer-patches": true,
+            "oomphinc/composer-installers-extender": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "security-checks": [
+            "drush sec"
+        ],
+        "static-analysis": [
+            "phpcs -p",
+            "phpstan analyze --memory-limit 1G"
+        ],
+        "pre-commit": [
+            "@static-analysis"
+        ],
+        "code-fix": [
+            "phpcbf"
+        ],
+        "update-core": [
+            "@composer update drupal/core \"drupal/core-*\" symfony/* --with-all-dependencies"
+        ]
+    },
+    "scripts-descriptions": {
+        "security-checks": "Perform static security analysis for Drupal and PHP dependencies.",
+        "static-analysis": "Statically analyze code for style and best practice.",
+        "pre-commit": "Suggested pre-commit actions (must be registered locally; tests everything, not just files to be committed.)",
+        "code-fix": "Automatically perform fixable code style violations.",
+        "update-core": "Recommended command to update Drupal core dependencies."
+    },
+    "extra": {
+        "composer-exit-on-patch-failure": true,
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            },
+            "file-mapping": {
+                "[web-root]/.ht.router.php": false,
+                "[web-root]/INSTALL.txt": false,
+                "[web-root]/LICENSE.txt": false,
+                "[web-root]/README.txt": false,
+                "[web-root]/example.gitignore": false,
+                "[web-root]/sites/example.settings.local.php": false,
+                "[web-root]/web.config": false,
+                "[web-root]/sites/example.sites.php": false,
+                "[web-root]/.gitignore": false,
+                "[web-root]/README.md": false
+            },
+            "initial": {
+                ".htaccess": "web/.htaccess",
+                "robots.txt": "web/robots.txt",
+                "sites/default/default.services.yml": "web/sites/default/services.yml",
+                "sites/default/example.settings.local.php": "web/sites/default/settings.local.php"
+            },
+            "omit-defaults": true
+        },
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        },
+        "patchLevel": {
+            "drupal/core": "-p2"
+        },
+        "patches": {
+            "asm89/stack-cors": {
+                "[private] Warning: implode(): Invalid arguments passed in Asm89\\Stack\\CorsService->addActualRequestHeaders() (line 94)": "patches/asme89-stack-cors-implode-invalid-arguments-corsservice.patch"
+            },
+            "drupal/component_blocks": {
+                "3210538 - Not working with Settings Type url and token ": "https://git.drupalcode.org/project/component_blocks/-/merge_requests/2.patch"
+            },
+            "drupal/core": {
+                "Callers of LayoutEntityHelperTrait::getEntitySections() do not account for the view mode": "https://www.drupal.org/files/issues/2021-12-09/3008924-rerolled-24.patch",
+                "Break long text strings in layout edit": "https://www.drupal.org/files/issues/2020-12-22/3016507-50.patch",
+                "Improve StringItem::generateSampleValue()": "https://www.drupal.org/files/issues/2020-06-24/3091478-15.patch",
+                "Not all form elements can't use in vertical_tabs": "https://www.drupal.org/files/issues/2021-01-02/3122920_group_patch_5.patch",
+                "PHP message: Error: Call to a member function getEntityTypeId() on null (Layout Builder)": "https://www.drupal.org/files/issues/2020-08-05/3049332-inline-35.patch",
+                "Stream wrapper reference in JS library causes error in _locale_parse_js_file()": "https://www.drupal.org/files/issues/2020-05-08/2735717-28.patch",
+                "New non translatable field on translatable content throws error": "https://www.drupal.org/files/issues/2021-02-10/3025039_42.patch",
+                "2869592 - Disabled update module shouldn't produce a status report warning": "https://www.drupal.org/files/issues/2020-02-07/2869592-remove-update-warning-34.patch",
+                "3275611 - Editing source using the CKEditor Source mode does not fire change event": "https://www.drupal.org/files/issues/2022-06-15/3275611.patch"
+            },
+            "drupal/layout_builder_st": {
+                "Argument 1 passed to Drupal\\layout_builder_st\\EventSubscriber\\ComponentPluginTranslate::isTranslation() must implement interface Drupal\\layout_builder\\SectionStorageInterface, null given": "https://www.drupal.org/files/issues/2019-07-24/isTranslation-null-given.patch",
+                "Inline block loading active block_content revision even if serialized block exists\n": "https://www.drupal.org/files/issues/2020-05-15/layout_builder_st-3067646-10.patch"
+            },
+            "drupal/drimage": {
+                "Stage file proxy": "https://git.drupalcode.org/project/drimage/-/merge_requests/1.patch",
+                "embeds in wysiwyg not displaying media": "https://www.drupal.org/files/issues/2020-09-06/3079190-8--show_img_in_media_embed.patch?X"
+            },
+            "drupal/section_library": {
+                "#3228163: Add create or update logic.": "https://git.drupalcode.org/project/section_library/-/merge_requests/3.patch"
+            },
+            "drupal/ui_patterns": {
+                "Allow for Layout Builder sections to be given administrativ.": "https://patch-diff.githubusercontent.com/raw/nuvoleweb/ui_patterns/pull/278.patch",
+                "Add quick edit": "https://patch-diff.githubusercontent.com/raw/nuvoleweb/ui_patterns/pull/273.patch",
+                "Undefined index: label in Drupal\\ui_patterns\\PatternDefinitionField->construct()": "https://patch-diff.githubusercontent.com/raw/nuvoleweb/ui_patterns/pull/351.patch"
+            }
+        }
+    }
+}

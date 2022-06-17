@@ -1,0 +1,18 @@
+diff --git a/src/Asm89/Stack/CorsService.php b/src/Asm89/Stack/CorsService.php
+index 3ce324a..7479757 100644
+--- a/src/Asm89/Stack/CorsService.php
++++ b/src/Asm89/Stack/CorsService.php
+@@ -91,7 +91,12 @@ class CorsService
+         }
+ 
+         if ($this->options['exposedHeaders']) {
+-            $response->headers->set('Access-Control-Expose-Headers', implode(', ', $this->options['exposedHeaders']));
++            if (is_array($this->options['exposedHeaders'])) {
++                $response->headers->set('Access-Control-Expose-Headers', implode(', ', $this->options['exposedHeaders']));
++            }
++            elseif (is_string($this->options['exposedHeaders'])) {
++                $response->headers->set('Access-Control-Expose-Headers', $this->options['exposedHeaders']);
++            }
+         }
+ 
+         return $response;

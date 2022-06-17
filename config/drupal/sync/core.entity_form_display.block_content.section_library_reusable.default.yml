@@ -1,0 +1,26 @@
+uuid: fdbb944d-9daa-4c0c-86d3-ab2ba7ed386a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.section_library_reusable
+    - field.field.block_content.section_library_reusable.field_library
+    - field.field.block_content.section_library_reusable.layout_builder__layout
+_core:
+  default_config_hash: 6esuaQieP3vjvj0rvlkYsFARs6VcEmPuPBpMTlkYluI
+id: block_content.section_library_reusable.default
+targetEntityType: block_content
+bundle: section_library_reusable
+mode: default
+content:
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  field_library: true
+  layout_builder__layout: true

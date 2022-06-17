@@ -1,0 +1,20 @@
+uuid: 41aaac95-629b-4411-9c5c-a0f977397ef3
+langcode: en
+status: true
+dependencies:
+  theme:
+    - semantic
+_core:
+  default_config_hash: ABoKnlk20KHqZRw_2Qr4EvaFvH4lnQ2nuhunHeE1JIU
+id: semantic_local_actions
+theme: semantic
+region: content
+weight: -10
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }
